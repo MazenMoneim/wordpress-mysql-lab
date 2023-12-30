@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+
+  wordpress:
+    image: wordpress:latest
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: mazen
+      WORDPRESS_DB_PASSWORD: a
+      WORDPRESS_DB_NAME: sales
+    ports:
+      - 8080:80
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - vol-wordpress:/var/lib/mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_DATABASE: sales
+      MYSQL_USER: mazen
+      MYSQL_PASSWORD: a
+volumes:
+  vol-wordpress:
